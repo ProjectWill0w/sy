@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Your Red Packet </title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #8b0000, #b22222);
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        position: relative;
+    }
+
+    .instruction {
+        color: gold;
+        font-size: 18px;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .envelope {
+        width: 260px;
+        height: 380px;
+        background: linear-gradient(145deg, #d40000, #ff1a1a);
+        border-radius: 12px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.4s ease;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .envelope:hover {
+        transform: scale(1.05);
+    }
+
+    .flap {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        background: #b30000;
+        top: 0;
+        left: 0;
+        transform-origin: top;
+        transition: transform 0.8s ease;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .gold-text {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 60px;
+        color: gold;
+        font-weight: bold;
+    }
+
+    .letter {
+        position: absolute;
+        width: 90%;
+        height: 70%;
+        background: #fff8dc;
+        top: 15%;
+        left: 5%;
+        border-radius: 8px;
+        padding: 20px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        transition: transform 1s ease;
+        text-align: center;
+        font-size: 18px;
+        opacity: 0;
+    }
+
+    .open .flap {
+        transform: rotateX(180deg);
+    }
+
+    .open .letter {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: gold;
+        border-radius: 50%;
+        animation: float 3s infinite ease-in-out;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        50% { transform: translateY(-40px) scale(1.5); opacity: 0.5; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="instruction">Open me ✨</div>
+
+    <div class="envelope" onclick="openEnvelope(this)">
+        <div class="flap"></div>
+        <div class="gold-text">福</div>
+
+        <div class="letter">
+          Open your Paynow :D
+            
+            
+        </div>
+    </div>
+</div>
+
+<script>
+function openEnvelope(el) {
+    el.classList.toggle("open");
+}
+
+// create sparkles
+for (let i = 0; i < 25; i++) {
+    let sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * window.innerWidth + "px";
+    sparkle.style.top = Math.random() * window.innerHeight + "px";
+    sparkle.style.animationDelay = Math.random() * 3 + "s";
+    document.body.appendChild(sparkle);
+}
+</script>
+
+</body>
+</html>
